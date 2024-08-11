@@ -404,7 +404,7 @@ bool GUI::Menu(const std::string& label, const Action<>& ui, bool enabled) {
   return false;
 }
 bool GUI::MenuItem(const std::string& label, const std::string& shortcut,
-                   bool* selected, bool enabled) {
+                   bool selected, bool enabled) {
   return ImGui::MenuItem(label.c_str(), shortcut.c_str(), selected, enabled);
 }
 void GUI::MenuItem(const std::string& label, const std::string& shortcut,

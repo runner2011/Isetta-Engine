@@ -201,7 +201,7 @@ class ISETTA_API_DECLARE Array {
   inline bool operator!=(const Array &rhs) const;
 
   inline size_type Size() const { return size; }
-  inline size_type MaxSize() const { return std::numeric_limits<U64>::max{}; }
+  //inline size_type MaxSize() const { return std::numeric_limits<U64>::max{}; }
   inline size_type Capacity() const { return capacity; }
   bool IsEmpty() const { return size == 0; }
   void Resize(int size, value_type val = value_type());

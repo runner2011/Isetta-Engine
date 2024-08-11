@@ -800,7 +800,7 @@ class ISETTA_API GUI {
   static bool Menu(const std::string& label, const Action<>& ui,
                    bool enabled = true);
   static bool MenuItem(const std::string& label, const std::string& shortcut,
-                       bool* selected = false, bool enabled = true);
+                       bool selected = false, bool enabled = true);
   static void MenuItem(const std::string& label, const std::string& shortcut,
                        const Action<>& callback, bool enabled = true);
   static bool Modal(const RectTransform& transform, const std::string& name,

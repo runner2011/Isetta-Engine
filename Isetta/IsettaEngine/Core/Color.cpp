@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdexcept>
 #include "Core/Math/Vector4.h"
+#include <iostream>
 
 namespace Isetta {
 const Color Color::black = Color{0, 0, 0, 1};
@@ -38,7 +39,7 @@ float Color::operator[](int i) const {
 }
 std::istream& operator>>(std::istream& in, Color& color) {
   char c;
-  in >> std::skipws;
+//  in >> std::skipws; //compile error
   for (int i = 0; i < 4; ++i) {
     in >> c >> color;
   }

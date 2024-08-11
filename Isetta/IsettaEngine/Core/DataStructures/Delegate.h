@@ -24,7 +24,8 @@ class Delegate {
 
   U64 Subscribe(Action<const ActionArgs&...> action);
   void Unsubscribe(U64& handle);
-  void Invoke(const ActionArgs&... args);
+  void Invoke( ActionArgs&... args);
+  void Invoke(const ActionArgs&... args) const ;
   void Clear();
 };
 
@@ -47,7 +48,7 @@ void Delegate<ActionArgs...>::Unsubscribe(U64& handle) {
 }
 
 template <typename... ActionArgs>
-void Delegate<ActionArgs...>::Invoke(const ActionArgs&... args) {
+void Delegate<ActionArgs...>::Invoke(const ActionArgs&... args) const {
   // In case the callback is unregistering itself
   std::list<Action<const ActionArgs&...>> callbacks;
   for (const KeyPair& callback : actions) {
@@ -56,6 +57,18 @@ void Delegate<ActionArgs...>::Invoke(const ActionArgs&... args) {
   for (const Action<const ActionArgs&...>& callback : callbacks) {
     callback(args...);
   }
+}
+
+template <typename... ActionArgs>
+void Delegate<ActionArgs...>::Invoke(ActionArgs&... args) {
+	// In case the callback is unregistering itself
+	std::list<Action<ActionArgs&...>> callbacks;
+	for (const KeyPair& callback : actions) {
+		callbacks.push_back(callback.second);
+	}
+	for (const Action<ActionArgs&...>& callback : callbacks) {
+		callback(args...);
+	}
 }
 
 template <typename ... ActionArgs>
